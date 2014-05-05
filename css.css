@@ -1,0 +1,95 @@
+body {
+	font-family: 'Raleway', 'sans-serif';
+	color: #32323e;
+}
+
+h1 {
+	margin-left: 110px;
+	font-family: 'Homemade Apple', cursive;
+	color: #000;
+}
+
+h3 {
+	border-bottom: 2px solid rgba(254, 54, 54, .76);
+}
+
+a {
+	text-decoration: none;
+}
+
+p {
+	margin-bottom: 35px; 
+}
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+ul, ul li, ol, ol li {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+
+ul li {
+	float: left;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	width: 33.333%;
+	padding: 10px;
+}
+
+.to_do {
+	width: 60%;
+	margin: 30px auto;
+	padding: 0 50px 50px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border-radius: 8px;
+	border: 7px solid rgba(254, 54, 54, .76);
+}
+
+
+textarea {
+	min-height: 292px;
+    width: 100%;
+    margin: 0 auto;
+    border: 2px solid rgba(254, 54, 54, .76);
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+input.btn, .button {
+	padding: 15px 30px;
+	border: none;
+	background: rgba(254, 54, 54, .76);
+	border-radius: 8px;
+	font-weight: 500;
+	font-size: 15px;
+	height: 50px;
+	margin-right: 20px;
+	white-space: nowrap;
+	margin-top: 20px;
+	text-align: center;
+	line-height: 15px;
+	font-family: 'Raleway', 'sans-serif';
+	color: #fff;
+
+}
+
+.go_to {
+	display: block;
+	margin-top: 40px;
+}
+
+.last {
+	margin-top: 20px;
+}
+
+
