@@ -121,7 +121,6 @@
 	 			 if ($num_rows == 0) {
 		 			 $SQLstring = "INSERT INTO $TableName (project_name) VALUES('$project');"; 
 		 			 $QueryResult = @mysql_query($SQLstring, $DBConnect); 
-		 			 $Body .= "The project wasn't in there. I've added it";
 		 			 $ProjectID = @mysql_insert_id();
 /* 		 			 echo $ProjectID; */
 
@@ -132,8 +131,6 @@
 		 			 $SQLstring = "SELECT project_id FROM $TableName WHERE project_name='$project';";
 		 			 $QueryResult = @mysql_query($SQLstring, $DBConnect); 
 		 			 $ProjectID = mysql_result($QueryResult, 0);
-		 			 $Body .= "The project already existed!";
-/* 		 			 echo $ProjectID; */
 
 	 			 }
 
@@ -151,7 +148,7 @@
 	 			 	$Body .= "<p>Unable to enter the item to your to do list.</p>" . "<p>Error Code " . mysql_errno($DBConnect) . ": " . mysql_error($DBConnect) . "</p>"; 
 	 			 	}
 	     		 else {
-	     			 $Body .= "<p><a class='button' href='todolist.php?PHPSESSID=" . session_id() . "'>What do you still need to do?</a></p>";
+	     			 $Body .= "<p><a class='button' href='todolist.php'>What do you still need to do?</a></p>";
 	     		}
 	     		mysql_close($DBConnect); 
 	     		} 
@@ -168,7 +165,7 @@
 <link rel="stylesheet" href="css.css">
 </head>
 	<body>
-		<h1>Dos are for Doing</h1>
+		<h1><a href="index.php">Dos are for Doing</a></h1>
 		<div class="to_do">
 		<?php 
 			echo $Body;

@@ -87,7 +87,7 @@
 <link href='http://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css.css">
 </head>
-	<h1>Dos are for Doing</h1>
+		<h1><a href="index.php">Dos are for Doing</a></h1>
 	<body>
 		<div class="to_do">
 		<?php 

@@ -3,13 +3,16 @@
     $Body = "";
 	$errors = 0;
 
-	$project = $_SESSION['project'];
+	if($_POST['project']) {
+		$project = $_POST['project'];
+	}
+	else {
+		$project = $_SESSION['project'];
+	}
 	 //Convert Session Variables into Database Info
      $DatabaseName = $_SESSION['databaseName'];
      $DatabaseUser = $_SESSION['databaseUser'];
      $DatabasePassword = $_SESSION['databasePassword'];
-
-
 
 	if ($errors == 0) {
 		//checking to see if a connection to the database can be made
@@ -36,7 +39,7 @@
 	     	
 	     	else 
 	     		//for the debugging
-	     		$Body .= "<!--THE DATABASE EXISTS!-->";
+	     		$Body .= "<!--THE DATABASE EXISTS!-->";	     		
 	     	} 
 	     	
 	     	$result = @mysql_select_db($DBName, $DBConnect); 
@@ -55,19 +58,23 @@
      		$num_rows = mysql_num_rows($QueryResult);
 	 		
  			if ($num_rows == 0) {
-	 			$Body .= "TO DO: Add things to your to do list.";
+	 			$Body .= "TO DO: Add things to your to do list.<br />";
 	 		}
 
 	 		else {
 		 		while ($row = mysql_fetch_assoc($QueryResult)) {
 		 		
 			 		$ProjectID = $row['project_ID'];
-
 			 		$SQLstring = "SELECT item, item_number FROM $SecondTableName WHERE project_ID=$ProjectID;"; 
 			 		$QueryResult = @mysql_query($SQLstring, $DBConnect); 
-			 		
+		    		$num_rows = mysql_num_rows($QueryResult);
+
 			 		$Body .= "<h3>" . $project . "</h3><ol>";
-			 			
+
+		 			if ($num_rows == 0) {
+			 			$Body .= "TO DO: Add things to your to do list.<br />";
+			 		}			 			
+			 		else {
 			 			while($item = mysql_fetch_assoc($QueryResult)) {
 				 			$ToDo = $item['item'];
 				 			$itemNumber = $item['item_number'];
@@ -76,6 +83,8 @@
 			 			}
 			 		
 			 		$Body .= "</ol>";
+			 		$Body .= '<input type="submit" class="btn" name="submit" value="Update, I got stuff done!" /><input type="reset" class="btn" name="reset" value="Undo Selection" />';
+			 		}
 		 		}
 	 		}
 
@@ -95,23 +104,18 @@
 <link rel="stylesheet" href="css.css">
 </head>
 	<body>
-		<h1>Dos are for Doing</h1>
+		<h1><a href="index.php">Dos are for Doing</a></h1>
 		<div class="to_do">
 			<h2>What have you completed today?</h2>
 		
-			<form method="post" action="<?php echo "update.php?PHPSESSID=" . session_id();?>" id="done_form">
-		
+			<form method="post" action="update.php" id="done_form">
 		<?php 
 			echo $Body;
 		?>
-		
-				<input type="submit" class="btn" name="submit" value="Update, I got stuff done!" />
-				<input type="reset" class="btn" name="reset" value="Undo" />
 			</form>
 			<div class="go_to">	
 				<a class="button" href="index.php">Add More To Dos</a>
 			</div>
-		
 		</div>
 	</body>
 </html>

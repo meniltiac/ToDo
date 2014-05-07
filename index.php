@@ -66,16 +66,10 @@
 	 				$ProjectName = $row['project_name'];
 			 		$Body .= "<li><input type='radio' name='project' value='$ProjectName'> " . $ProjectName . "</li>";
 	 			}
-	 		
 	 		}
-
 	     	mysql_close($DBConnect); 
 	     } 
-	     	 
 	  }
-
-
-
      
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
@@ -87,16 +81,15 @@
 <link href='http://fonts.googleapis.com/css?family=Homemade+Apple' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css.css">
-
+<!-- CAITLIN MCKENNA'S FINAL PROJECT -->
 </head>
 	<body>
 		
-			<h1>Dos are for Doing</h1>
+			<h1><a href="index.php">Dos are for Doing</a></h1>
 <div class="to_do">
 			<h3>Add a Do</h3>
-			<form method="POST" action="<?php echo "submit.php?PHPSESSID=" . session_id();?>" id="to_do_form">
+			<form method="POST" action="submit.php" id="to_do_form">
 				<p>Which Project?</p>
-					<?php //FOREACH loop that gets table names from DATABASE and displays them as li radio buttons ?>
 				<div class="radio_btns">	
 					<ul class="clearfix">
 						<?php echo $Body; ?>
@@ -105,8 +98,18 @@
 				<p>Add a new project: <input type="text" name="new_project"></p>
 				<textarea name="toDo"> </textarea>
 				<input type="submit" class="btn" name="submit" value="Next" />
-				<input type="reset" class="btn" name="reset" value="Start Over" />
+				<input type="reset" class="btn" name="reset" value="Undo Selection" />
 			</form>
+			<br />
+			<h3>Don't have anything to add?</h3>
+			<p>Choose a To Do list to work on today</p>
+				<form method="post" action="todolist.php">
+					<ul class="clearfix">
+						<?php echo $Body; ?>
+					</ul>
+				<input type="submit" class="btn" name="submit" value="Next" />
+				<input type="reset" class="btn" name="reset" value="Undo Selection" />					
+				</form>
 		</div>
 	</body>
 </html>
